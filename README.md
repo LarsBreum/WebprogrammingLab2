@@ -2,6 +2,33 @@
 
 Authours: Lars Breum Hansen, Elham Tayebi
 
+# Reflection Questions
+
+## Q1
+
+As an alternative to the function component above you can
+use a class component: class ComposeSalad extends react.Component {}. Is there a
+difference between class components and function components concerning features (use
+cases where only one of them can be used)?
+
+Answer: Vet inte
+
+## Q2
+
+The render function must be a pure function of props and the
+component state, the values returned by useState(). What happens if the output of the
+render function is depending on other data that changes over time?
+
+Answer:
+
+## Q3
+
+In the code above, the foundations array is computed every time
+the component is rendered. The inventory changes very infrequent so this is inefficient.
+Can you cache foundations so it is only computed when props.inventory changes?
+
+Asnwer: Yes. Don't know how though.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
