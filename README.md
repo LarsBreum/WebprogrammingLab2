@@ -1,3 +1,7 @@
+# lab 2 in Webprogramming at LTH 2023
+
+Authours: Lars Breum Hansen, Elham Tayebi
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
