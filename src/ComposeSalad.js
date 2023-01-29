@@ -17,7 +17,22 @@ function ComposeSalad(props) {
   const [foundation, setFoundation] = useState("Pasta");
   const [protein, setProtein] = useState("Kycklingfilé");
   const [dressing, setDressing] = useState("Ceasardressing");
-  const [extra, setExtra] = useState({ Bacon: true, Fetaost: true });
+  const [extra, setExtra] = useState({});
+
+  function copyAndUpdate(oldState, e) {
+    console.log("--- copyAndUpdate ---");
+    let stateCopy = { ...oldState };
+
+    if (e.target.checked) {
+      stateCopy[e.target.name] = e.target.checked;
+    } else {
+      delete stateCopy[e.target.name];
+    }
+
+    console.log(stateCopy);
+
+    return stateCopy;
+  }
 
   return (
     <div className="container col-12">
@@ -44,17 +59,34 @@ function ComposeSalad(props) {
           }}
         >
           {proteins.map((name) => (
-            <option value={name} key={name} className="col-4">
+            <option
+              onChange={(e) => {
+                if (this.name === true) {
+                  console.log(e.target.value);
+                }
+              }}
+              value={name}
+              key={name}
+              className="col-4"
+            >
               {name}
             </option>
           ))}
         </select>
-
         <h4>Välj tillbehör</h4>
 
         {extras.map((name) => (
           <label className="col-3">
-            <input type="checkbox" key={name} />
+            <input
+              //checked={false}
+              type="checkbox"
+              key={name}
+              name={name}
+              onChange={(e) => {
+                console.log(e.target.checked);
+                setExtra((extra) => copyAndUpdate(extra, e));
+              }}
+            />
             {name}
           </label>
         ))}
