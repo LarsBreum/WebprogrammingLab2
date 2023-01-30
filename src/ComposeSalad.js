@@ -1,6 +1,7 @@
 import { useState } from "react";
-import inventory from "./inventory.ES6";
+import inventory from "./inventory.ES6.js";
 import { Salad } from "./Salad.js";
+import Cart from "./Cart.js";
 
 function ComposeSalad(props) {
   let foundations = Object.keys(props.inventory).filter(
@@ -16,40 +17,44 @@ function ComposeSalad(props) {
     (name) => props.inventory[name].extra
   );
 
+  //! FUNCTIONS _______________________________________________________
+  function copyAndUpdate(oldState, e) {
+    let stateCopy = { ...oldState };
+    return e.target.checked
+      ? (stateCopy[e.target.name] = e.target.checked)
+      : delete stateCopy[e.target.name];
+  }
+
+  //! REACT hook useState _______________________________________________________
   const [foundation, setFoundation] = useState("Pasta");
   const [protein, setProtein] = useState("Kycklingfilé");
   const [dressing, setDressing] = useState("Ceasardressing");
   const [extra, setExtra] = useState({});
-
-  function copyAndUpdate(oldState, e) {
-    let stateCopy = { ...oldState };
-
-    if (e.target.checked) {
-      stateCopy[e.target.name] = e.target.checked;
-    } else {
-      delete stateCopy[e.target.name];
-    }
-    return stateCopy;
-  }
+  const [yourSalad, setYourSalad] = useState({});
 
   return (
     <div className="container col-12">
       <h2>Bygg din sallad</h2>
+
+      {/* //! FORM ________________________________________________________________ */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
 
-          let mySalad = new Salad()
-            .add(foundation, inventory[foundation])
-            .add(protein, inventory[protein])
-            .add(dressing, inventory[dressing]);
+          //? SALAD OBJECT
+          setYourSalad(
+            new Salad() //? SALAD
+              .add(foundation, inventory[foundation])
+              .add(protein, inventory[protein])
+              .add(dressing, inventory[dressing]),
 
-          Object.keys(extra).forEach((extra) =>
-            mySalad.add(extra, inventory[extra])
+            Object.keys(extra).forEach((extra) =>
+              yourSalad.add(extra, inventory[extra])
+            )
           );
-
-          console.log("mySalad:");
-          console.log(mySalad);
+          console.log("----mySalad:");
+          // console.log(mySalad);
+          
         }}
       >
         <h4>Välj Bas</h4>
@@ -57,6 +62,7 @@ function ComposeSalad(props) {
           value={foundation}
           onChange={(e) => {
             setFoundation(e.target.value);
+            // console.log(foundation);
           }}
         >
           {foundations.map((name) => (
@@ -95,7 +101,7 @@ function ComposeSalad(props) {
               type="checkbox"
               name={name}
               onChange={(e) => {
-                //console.log(e.target.checked);
+                // console.log(e.target.name)
                 setExtra((extra) => copyAndUpdate(extra, e));
               }}
             />
@@ -117,6 +123,7 @@ function ComposeSalad(props) {
         </select>
         <button type="submit">Submit</button>
       </form>
+      <Cart mySalad={yourSalad} />
     </div>
   );
 }

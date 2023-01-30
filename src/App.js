@@ -3,9 +3,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
 import Order from "./Order.js";
+import Cart from "./Cart.js";
+import { useState } from "react";
 
 function App() {
   let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
+  // let tempId = 0;
+   const [tempId, setTempId] = useState(0);
   return (
     <div className="container py-4">
       <header className="pb-3 mb-4 border-bottom">
@@ -18,9 +22,18 @@ function App() {
           <ComposeSalad inventory={inventory} />
         </div>
         <div>
-          <h2>Shopping cart</h2>
+          <h2>---------From APP--------------</h2>
+
+          {extras.map((name) => (
+            <article key={name} className="col-4">
+              
+              {name}
+            
+            </article>
+          ))}
         </div>
       </div>
+
 
       <footer className="pt-3 mt-4 text-muted border-top">
         EDAF90 - webprogrammering, la8177br-s, el1461ta-s
