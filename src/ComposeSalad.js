@@ -37,6 +37,8 @@ function ComposeSalad(props) {
       <h2>Bygg din sallad</h2>
       <form
         onSubmit={(e) => {
+          e.preventDefault();
+
           let mySalad = new Salad()
             .add(foundation, inventory[foundation])
             .add(protein, inventory[protein])
@@ -45,9 +47,9 @@ function ComposeSalad(props) {
           Object.keys(extra).forEach((extra) =>
             mySalad.add(extra, inventory[extra])
           );
+
           console.log("mySalad:");
           console.log(mySalad);
-          e.preventDefault();
         }}
       >
         <h4>Välj Bas</h4>
