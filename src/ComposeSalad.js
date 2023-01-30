@@ -1,4 +1,6 @@
 import { useState } from "react";
+import inventory from "./inventory.ES6";
+import { Salad } from "./Salad.js";
 
 function ComposeSalad(props) {
   let foundations = Object.keys(props.inventory).filter(
@@ -20,7 +22,6 @@ function ComposeSalad(props) {
   const [extra, setExtra] = useState({});
 
   function copyAndUpdate(oldState, e) {
-    console.log("--- copyAndUpdate ---");
     let stateCopy = { ...oldState };
 
     if (e.target.checked) {
@@ -28,16 +29,27 @@ function ComposeSalad(props) {
     } else {
       delete stateCopy[e.target.name];
     }
-
-    console.log(stateCopy);
-
     return stateCopy;
   }
 
   return (
     <div className="container col-12">
       <h2>Bygg din sallad</h2>
-      <form>
+      <form
+        onSubmit={(e) => {
+          let mySalad = new Salad()
+            .add(foundation, inventory[foundation])
+            .add(protein, inventory[protein])
+            .add(dressing, inventory[dressing]);
+
+          Object.keys(extra).forEach((extra) =>
+            mySalad.add(extra, inventory[extra])
+          );
+          console.log("mySalad:");
+          console.log(mySalad);
+          e.preventDefault();
+        }}
+      >
         <h4>Välj Bas</h4>
         <select
           value={foundation}
@@ -62,7 +74,7 @@ function ComposeSalad(props) {
             <option
               onChange={(e) => {
                 if (this.name === true) {
-                  console.log(e.target.value);
+                  //console.log(e.target.value);
                 }
               }}
               value={name}
@@ -76,14 +88,12 @@ function ComposeSalad(props) {
         <h4>Välj tillbehör</h4>
 
         {extras.map((name) => (
-          <label className="col-3">
+          <label className="col-3" key={name}>
             <input
-              //checked={false}
               type="checkbox"
-              key={name}
               name={name}
               onChange={(e) => {
-                console.log(e.target.checked);
+                //console.log(e.target.checked);
                 setExtra((extra) => copyAndUpdate(extra, e));
               }}
             />
@@ -103,6 +113,7 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

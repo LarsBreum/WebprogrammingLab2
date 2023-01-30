@@ -2,6 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
+
 function App() {
   let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
   return (
@@ -23,7 +24,7 @@ function App() {
       <ComposeSalad inventory={inventory} />
 
       <footer className="pt-3 mt-4 text-muted border-top">
-        EDAF90 - webprogrammering
+        EDAF90 - webprogrammering, la8177br-s, el1461ta-s
       </footer>
     </div>
   );
