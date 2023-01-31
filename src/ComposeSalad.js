@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import inventory from "./inventory.ES6.js";
 import { Salad } from "./Salad.js";
 import Cart from "./Cart.js";
+import App from "./App.js";
 
 function ComposeSalad(props) {
+  //console.log(changeState);
   let foundations = Object.keys(props.inventory).filter(
     (name) => props.inventory[name].foundation
   );
@@ -20,9 +22,10 @@ function ComposeSalad(props) {
   //! FUNCTIONS _______________________________________________________
   function copyAndUpdate(oldState, e) {
     let stateCopy = { ...oldState };
-    return e.target.checked
+      e.target.checked
       ? (stateCopy[e.target.name] = e.target.checked)
       : delete stateCopy[e.target.name];
+    return stateCopy;
   }
 
   //! REACT hook useState _______________________________________________________
@@ -30,7 +33,9 @@ function ComposeSalad(props) {
   const [protein, setProtein] = useState("Kycklingfilé");
   const [dressing, setDressing] = useState("Ceasardressing");
   const [extra, setExtra] = useState({});
-  const [yourSalad, setYourSalad] = useState({});
+  /**
+   * Should clear form after submit
+   */
 
   return (
     <div className="container col-12">
@@ -41,20 +46,23 @@ function ComposeSalad(props) {
         onSubmit={(e) => {
           e.preventDefault();
 
-          //? SALAD OBJECT
-          setYourSalad(
-            new Salad() //? SALAD
-              .add(foundation, inventory[foundation])
-              .add(protein, inventory[protein])
-              .add(dressing, inventory[dressing]),
+          let mySalad = new Salad()
+            .add(foundation, inventory[foundation])
+            .add(protein, inventory[protein])
+            .add(dressing, inventory[dressing]);
 
-            Object.keys(extra).forEach((extra) =>
-              yourSalad.add(extra, inventory[extra])
-            )
+          Object.keys(extra).forEach((extra) =>
+            mySalad.add(extra, inventory[extra])
           );
-          console.log("----mySalad:");
-          // console.log(mySalad);
+
+          props.setSalad(mySalad);
+
+           /**
+           * Should clear form after submit
+           */
           
+          //console.log("----mySalad:");
+          // console.log(mySalad);
         }}
       >
         <h4>Välj Bas</h4>
@@ -123,7 +131,6 @@ function ComposeSalad(props) {
         </select>
         <button type="submit">Submit</button>
       </form>
-      <Cart mySalad={yourSalad} />
     </div>
   );
 }

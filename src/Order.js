@@ -9,7 +9,7 @@ export class Order {
     return this;
   }
   //adds the specified number of Salad objects to the basket
-  add(salad, num) {
+  add(salad, num=1) {
     while (num > 0) {
       this.basket.push(salad);
       num--;
