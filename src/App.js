@@ -2,6 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
+import ViewOrder from "./ViewOrder";
 import { Order } from "./Order.js";
 import Cart from "./Cart.js";
 import { useState, useEffect } from "react";
@@ -10,11 +11,11 @@ import { Salad } from "./Salad";
 function App() {
   let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
   const [currentSalad, setSalad] = useState(new Salad());
-  const [order, setOrders] = useState([currentSalad]);
+  const [order, setOrder] = useState([]);
   //let order = new Order();
 
   useEffect(() => {
-    setOrders([...order, currentSalad]);
+    setOrder([...order, currentSalad]);
   }, [currentSalad]);
 
   return (
@@ -30,15 +31,7 @@ function App() {
         </div>
         <div>
           <h2>Din beställning</h2>
-          <ul>
-            {useEffect(() => {
-              console.log(order);
-              /**
-               * Should print salad ingredients, price and number
-               * and total order price
-               */
-            }, [currentSalad])}
-          </ul>
+          <ViewOrder order={order} setOrder={setOrder} />
         </div>
       </div>
 
