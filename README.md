@@ -14,6 +14,11 @@ cases where only one of them can be used)?
 Answer: Function components have no state and simply displays some UI. Class components are (simple) classes that can implement methods and logic in different ways.
 https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components-in-react/
 
+Class components have lifecycle methods which can be used to control what happens during specific times of the in the creation/updating/desctruction of components.
+Hooks can be used for most things now.
+
+function components are easier to read and implement in many cases, and can use props directly.
+
 ## Q2
 
 The render function must be a pure function of props and the
@@ -34,8 +39,6 @@ https://betterprogramming.pub/exploring-caching-techniques-in-react-d30bbb78d54d
 ## Q4 What triggers react to call the render function and update the DOM?
 
 Answer: A change in the state.
-
-??
 
 ## Q5 When the user change the html form state (DOM), does this change the state of your component?
 
