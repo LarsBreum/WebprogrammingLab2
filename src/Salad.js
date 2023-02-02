@@ -1,4 +1,3 @@
-
 const { v4: uuidv4 } = require("uuid");
 
 export class Salad {
@@ -22,16 +21,19 @@ export class Salad {
     this.id = "salad_" + Salad.instanceCounter++;
     return this;
   }
+  //adds ingredient
   add(name, properties) {
     //adding "ingredient"
     this.ingredients[name] = properties;
     return this;
   }
+  //removes ingredient
   remove(name) {
     //delete this.name;
     delete this.ingredients[name];
     return this;
   }
+  //calculates the price of the salad
   getPrice() {
     const ingre = Object.entries(this.ingredients);
     const price = ingre.reduce((acc, curr) => {
