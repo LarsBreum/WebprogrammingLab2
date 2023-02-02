@@ -22,7 +22,7 @@ function ComposeSalad(props) {
   //! FUNCTIONS _______________________________________________________
   function copyAndUpdate(oldState, e) {
     let stateCopy = { ...oldState };
-      e.target.checked
+    e.target.checked
       ? (stateCopy[e.target.name] = e.target.checked)
       : delete stateCopy[e.target.name];
     return stateCopy;
@@ -57,10 +57,10 @@ function ComposeSalad(props) {
 
           props.setSalad(mySalad);
 
-           /**
+          /**
            * Should clear form after submit
            */
-          
+
           //console.log("----mySalad:");
           // console.log(mySalad);
         }}
@@ -129,7 +129,7 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit">Lägg till</button>
       </form>
     </div>
   );

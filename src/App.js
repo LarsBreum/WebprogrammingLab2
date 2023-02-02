@@ -23,15 +23,17 @@ function App() {
       <header className="pb-3 mb-4 border-bottom">
         <span className="fs-4">Min egen salladsbar</span>
       </header>
+      <div className="container col-12">
+        <div className="row h-200 p-5 bg-light border rounded-3">
+          <h2>Din beställning</h2>
+          <ViewOrder order={order} setOrder={setOrder} />
+        </div>
+      </div>
 
-      <div className="continer col-12">
+      <div className="container col-12">
         <div className="row h-200 p-5 bg-light border rounded-3">
           <h2>Välj innehållet i din sallad</h2>
           <ComposeSalad inventory={inventory} setSalad={setSalad} />
-        </div>
-        <div>
-          <h2>Din beställning</h2>
-          <ViewOrder order={order} setOrder={setOrder} />
         </div>
       </div>
 
