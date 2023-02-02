@@ -66,7 +66,7 @@ function ComposeSalad(props) {
         }}
       >
         <h4>Välj Bas</h4>
-        <select
+        <select className="form-select"
           value={foundation}
           onChange={(e) => {
             setFoundation(e.target.value);

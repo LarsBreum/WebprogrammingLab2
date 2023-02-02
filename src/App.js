@@ -10,13 +10,13 @@ import { Salad } from "./Salad";
 
 function App() {
   let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
-  const [currentSalad, setSalad] = useState(new Salad());
+  //const [currentSalad, setSalad] = useState(new Salad());
   const [order, setOrder] = useState([]);
   //let order = new Order();
 
-  useEffect(() => {
+  /* useEffect(() => {
     setOrder([...order, currentSalad]);
-  }, [currentSalad]);
+  }, [currentSalad]); */
 
   return (
     <div className="container py-4">
@@ -33,7 +33,7 @@ function App() {
       <div className="container col-12">
         <div className="row h-200 p-5 bg-light border rounded-3">
           <h2>Välj innehållet i din sallad</h2>
-          <ComposeSalad inventory={inventory} setSalad={setSalad} />
+          <ComposeSalad inventory={inventory} setSalad={salad => setOrder([...order, salad])} />
         </div>
       </div>
 

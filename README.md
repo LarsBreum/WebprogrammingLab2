@@ -18,14 +18,14 @@ Class components have lifecycle methods which can be used to control what happen
 Hooks can be used for most things now.
 
 function components are easier to read and implement in many cases, and can use props directly.
-
+Ingen stor skillnad utan bara syntaxen.
 ## Q2
 
 The render function must be a pure function of props and the
 component state, the values returned by useState(). What happens if the output of the
 render function is depending on other data that changes over time?
 
-Answer: We can get "kapplöp" if are dependent on other variables. We also we want to update the DOM and the UI, which react does when the state changes.
+Answer: We can get "kapplöp" if are dependent on other variables. We also want to update the DOM and the UI, which react does when the state changes.
 
 ## Q3
 
@@ -33,16 +33,16 @@ In the code above, the foundations array is computed every time
 the component is rendered. The inventory changes very infrequent so this is inefficient.
 Can you cache foundations so it is only computed when props.inventory changes?
 
-Answer: Yes. We can use Memoization to cache data. But then we will also need to know when to update the cache.
+Answer: Yes. We can use Memoization to cache data. But then we will also need to know when to update the cache. useMemo
 https://betterprogramming.pub/exploring-caching-techniques-in-react-d30bbb78d54d
 
 ## Q4 What triggers react to call the render function and update the DOM?
 
-Answer: A change in the state.
+Answer: A change in the state and props. 
 
 ## Q5 When the user change the html form state (DOM), does this change the state of your component?
 
-Answer: No. Only when we submit the form, and change the React state.
+Answer: Yes. Only when we submit the form, and change the React state.
 
 ## Q6 For a class based component, what is the value of "this" in the event handling call-back functions?
 
