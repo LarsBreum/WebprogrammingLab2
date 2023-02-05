@@ -1,6 +1,9 @@
 # lab 2 & 3 in Webprogramming at LTH 2023
 
 Authours: Lars Breum Hansen, Elham Tayebi
+# Reflection Questions for lab 3
+## Q1 
+How do you replace the application icon, favicon.ico?
 
 # Reflection Questions for lab 2
 
