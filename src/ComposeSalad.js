@@ -66,7 +66,8 @@ function ComposeSalad(props) {
         }}
       >
         <h4>Välj Bas</h4>
-        <select className="form-select"
+        <select
+          className="form-select"
           value={foundation}
           onChange={(e) => {
             setFoundation(e.target.value);
@@ -81,6 +82,7 @@ function ComposeSalad(props) {
         </select>
         <h4>Välj Protein</h4>
         <select
+          className="form-select"
           value={protein}
           onChange={(e) => {
             setProtein(e.target.value);
@@ -118,6 +120,7 @@ function ComposeSalad(props) {
         ))}
         <h4>Välj Dressing</h4>
         <select
+          className="form-select"
           value={dressing}
           onChange={(e) => {
             setDressing(e.target.value);
@@ -129,7 +132,9 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
-        <button type="submit">Lägg till</button>
+        <button className="btn btn-primary" type="submit">
+          Lägg till
+        </button>
       </form>
     </div>
   );

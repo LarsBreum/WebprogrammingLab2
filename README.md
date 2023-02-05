@@ -19,6 +19,7 @@ Hooks can be used for most things now.
 
 function components are easier to read and implement in many cases, and can use props directly.
 Ingen stor skillnad utan bara syntaxen.
+
 ## Q2
 
 The render function must be a pure function of props and the
@@ -38,7 +39,7 @@ https://betterprogramming.pub/exploring-caching-techniques-in-react-d30bbb78d54d
 
 ## Q4 What triggers react to call the render function and update the DOM?
 
-Answer: A change in the state and props. 
+Answer: A change in the state and props.
 
 ## Q5 When the user change the html form state (DOM), does this change the state of your component?
 
@@ -56,7 +57,7 @@ Answer: the {...sourceObject} does a shallow copy and enum. That means it will c
 
 ## How do you replace the application icon, favicon.ico?
 
-Answer:
+Answer: We replace the "logo.svg" file in the "src" folder
 
 # Getting Started with Create React App
 
