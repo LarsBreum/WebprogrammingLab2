@@ -1,8 +1,8 @@
-# lab 2 in Webprogramming at LTH 2023
+# lab 2 & 3 in Webprogramming at LTH 2023
 
 Authours: Lars Breum Hansen, Elham Tayebi
 
-# Reflection Questions
+# Reflection Questions for lab 2
 
 ## Q1
 
@@ -50,7 +50,13 @@ Answer: "this" refers to the global object. The turtle at bottom.
 
 ## Q7 How is the prototype chain affected when copying an object with copy = {...sourceObject}?
 
-Answer: the {...sourceObject} does a shallow copy. That means it will create a new prototype chain.
+Answer: the {...sourceObject} does a shallow copy and enum. That means it will create a new prototype chain.
+
+# Reflection questions for lab 3
+
+## How do you replace the application icon, favicon.ico?
+
+Answer:
 
 # Getting Started with Create React App
 
