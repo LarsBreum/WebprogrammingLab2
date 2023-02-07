@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import App from "./App.js";
-
 function ViewOrder(props) {
   //let salads = props.order.filter((salad) => salad.getPrice() > 0);
   return (

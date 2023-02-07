@@ -3,8 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
-import { useState, useEffect } from "react";
-import { Salad } from "./Salad";
+import { useState } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import ViewIngredient from "./ViewIngredient";
 
@@ -12,6 +11,7 @@ function App(props) {
   let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
   //const [currentSalad, setSalad] = useState(new Salad());
   const [order, setOrder] = useState([]);
+  //const [page, setPage] = useState(["hem"]);
   //let order = new Order();
 
   /* useEffect(() => {
@@ -30,7 +30,7 @@ function App(props) {
     return (
       <ul className="nav nav-tabs">
         <li className="nav-item">
-          <Link className="nav-link active" to="/">
+          <Link className="nav-link " to="/">
             Hem
           </Link>
         </li>

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import inventory from "./inventory.ES6.js";
 import { Salad } from "./Salad.js";
 import { useNavigate, Link } from "react-router-dom";
-import ViewIngredient from "./ViewIngredient.js";
 
 function ComposeSalad(props) {
   //console.log(changeState);

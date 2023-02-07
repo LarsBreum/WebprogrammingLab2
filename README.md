@@ -57,15 +57,15 @@ Answer: the {...sourceObject} does a shallow copy and enum. That means it will c
 
 ## Q1 How do you replace the application icon, favicon.ico?
 
+Answer: Upload another favicon.ico picture :)
+
 ## Q2 If you use nav-pills instead of nav-tabs the selected page is no longer highlighted in the menu, why? Hint: <NavLink> and the active css class.
 
-## Q3 What is the meaning of a leading / in a path, the difference between <Link to="/view-ingredient/:name" /> and <Link to="view-ingredient/:name" />.
+Answer: Nav-tabs have different styling. Nav-tabs have a "defualt" active class. Nav-tabs styles the active link.
 
-Try it, look in the browser url field
+## Q3 What is the meaning of a leading / in a path, the difference between <Link to="/view-ingredient/:name" /> and <Link to="view-ingredient/:name" />. Try it, look in the browser url field
 
-Asnwer:
-
-Answer: We replace the "logo.svg" file in the "src" folder
+Asnwer: utan "/" är det en relativ path. Med "/" börjar vi från home.
 
 # Getting Started with Create React App
 

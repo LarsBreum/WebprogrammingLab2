@@ -1,4 +1,4 @@
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function ViewIngredient(props) {
   let { state } = useLocation();
