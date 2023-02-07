@@ -11,7 +11,7 @@ root.render(
   <>
     <Helmet>
       <meta charSet="utf-8" />
-      <title>React App</title>
+      <title>Din Salladsbar</title>
       <meta name="description" content="My page description" />
     </Helmet>
     <React.StrictMode>

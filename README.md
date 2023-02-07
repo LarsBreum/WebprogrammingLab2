@@ -1,9 +1,6 @@
 # lab 2 & 3 in Webprogramming at LTH 2023
 
 Authours: Lars Breum Hansen, Elham Tayebi
-# Reflection Questions for lab 3
-## Q1 
-How do you replace the application icon, favicon.ico?
 
 # Reflection Questions for lab 2
 
@@ -58,7 +55,15 @@ Answer: the {...sourceObject} does a shallow copy and enum. That means it will c
 
 # Reflection questions for lab 3
 
-## How do you replace the application icon, favicon.ico?
+## Q1 How do you replace the application icon, favicon.ico?
+
+## Q2 If you use nav-pills instead of nav-tabs the selected page is no longer highlighted in the menu, why? Hint: <NavLink> and the active css class.
+
+## Q3 What is the meaning of a leading / in a path, the difference between <Link to="/view-ingredient/:name" /> and <Link to="view-ingredient/:name" />.
+
+Try it, look in the browser url field
+
+Asnwer:
 
 Answer: We replace the "logo.svg" file in the "src" folder
 
