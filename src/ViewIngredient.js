@@ -11,9 +11,9 @@ function ViewIngredient(props) {
   return (
     <>
       <h1 className="h1">{state.extra}</h1>
-      <ul>
+      <ul className="list-group list-group-flush">
         {Object.entries(values).map((entry) => (
-          <li key={entry[0]}>
+          <li className="list-group-item text-capitalize" key={entry[0]}>
             {entry[0]}: {entry[1]}
           </li>
         ))}

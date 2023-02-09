@@ -4,7 +4,7 @@ import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
 import { useState } from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, NavLink } from "react-router-dom";
 import ViewIngredient from "./ViewIngredient";
 
 function App(props) {
@@ -30,19 +30,19 @@ function App(props) {
     return (
       <ul className="nav nav-tabs">
         <li className="nav-item">
-          <Link className="nav-link " to="/">
+          <NavLink className="nav-link " to="/">
             Hem
-          </Link>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/compose-salad">
+          <NavLink className="nav-link" to="/compose-salad">
             Skapa salad
-          </Link>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/view-order">
+          <NavLink className="nav-link" to="/view-order">
             Din beställning
-          </Link>
+          </NavLink>
         </li>
       </ul>
     );
