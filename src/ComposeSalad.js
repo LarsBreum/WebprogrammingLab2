@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import inventory from "./inventory.ES6.js";
 import { Salad } from "./Salad.js";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 
 function ComposeSalad(props) {
   //console.log(changeState);
@@ -32,6 +32,10 @@ function ComposeSalad(props) {
   const [protein, setProtein] = useState("");
   const [dressing, setDressing] = useState("");
   const [extra, setExtra] = useState({});
+
+  console.log(foundation);
+
+  let { id } = useParams();
 
   const navigate = useNavigate();
   /**
@@ -91,6 +95,13 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
+        <Link
+          className="btn btn-primary btn-sm"
+          to="/view-ingredient/"
+          state={{ foundation }}
+        >
+          View Info
+        </Link>
         <div className="invalid-feedback">Vänligen välj ett alternativ</div>
         <h4>Välj Protein</h4>
         <select
@@ -109,6 +120,13 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
+        <Link
+          className="btn btn-primary btn-sm"
+          to="/view-ingredient/"
+          state={{ protein }}
+        >
+          View Info
+        </Link>
         <div className="invalid-feedback">Vänligen välj ett alternativ</div>
         <h4>Välj tillbehör</h4>
         {extras.map((name) => (
@@ -122,14 +140,18 @@ function ComposeSalad(props) {
               }}
             />
             {
-              <Link
-                className="link-primary text-decoration-none"
-                to="/view-ingredient/"
-                key={name}
-                state={{ extra: name }}
-              >
-                {name}
-              </Link>
+              <>
+                <span key="{name}">{name}</span>
+                <br></br>
+                <Link
+                  className="btn btn-primary btn-sm"
+                  to="/view-ingredient/"
+                  key={name}
+                  state={{ extra: name }}
+                >
+                  View Info
+                </Link>
+              </>
             }
           </label>
         ))}
@@ -150,6 +172,13 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
+        <Link
+          className="btn btn-primary btn-sm"
+          to="/view-ingredient/"
+          state={{ dressing }}
+        >
+          View Info
+        </Link>
         <div className="invalid-feedback">Vänligen välj ett alternativ</div>
         <button className="btn btn-primary" type="submit">
           Lägg till
