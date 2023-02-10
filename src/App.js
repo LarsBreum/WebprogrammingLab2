@@ -9,42 +9,55 @@ import ViewIngredient from "./ViewIngredient";
 
 function App(props) {
   const [inventory, setInventory] = useState({});
-  let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
+  //let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
   //const [currentSalad, setSalad] = useState(new Salad());
   const [order, setOrder] = useState([]);
   //const [page, setPage] = useState(["hem"]);
   //let order = new Order();
 
   useEffect(() => {
-    console.log(inventory);
     let oldInventory = { ...inventory };
-    const foundationsPromise = fetchCategoryList("foundations")
-      .then((data) =>
-        data.map((ingredient) => {
-          return fetchIngredient("foundations", ingredient);
-        })
-      )
-      .then((promiseArr) => {
-        Promise.all(promiseArr).then((ingredientValues) => {
-          setInventory((oldInventory) => {
-            ingredientValues.map((value) => {
-              oldInventory.ingredient = value;
-            });
-          });
+    console.log(oldInventory);
+    let foundationsKeys = fetchCategoryList("foundations").then(
+      (foundationsKeys) => {
+        let promises = foundationsKeys.map((foundationKey) =>
+          fetchIngredient("foundations", foundationKey)
+        );
+        //vill ha ut ett array av values
+        const promiseArr = Promise.all(promises).then((data) => {
+          const newInventory = data.reduce((obj, value, index) => {
+            obj[foundationsKeys[index]] = value;
+            return obj;
+          }, {});
+          setInventory((oldInventory) => merge(oldInventory, newInventory));
         });
+      }
+    );
+    let proteinKeys = fetchCategoryList("proteins").then((proteinKeys) => {
+      let promises = proteinKeys.map((proteinKey) =>
+        fetchIngredient("proteins", proteinKey)
+      );
+      const promiseArr = Promise.all(promises).then((data) => {
+        const newInventory = data.reduce((obj, value, index) => {
+          obj[proteinKeys[index]] = value;
+          return obj;
+        }, {});
+        setInventory((oldInventory) => merge(oldInventory, newInventory));
       });
-
-    //fetch the inventory from the DB
-    // const promise = safeFetchJson("http://localhost:8080/extras").then((data) =>
-    //   console.log(data)
-    // );
+    });
+    let extrasKeys = fetchCategoryList("extras").then((data) => data);
+    let dressingsKeys = fetchCategoryList("dressings").then((data) => data);
   });
 
   //function updateInventory(fetchedIngredients) {}
 
-  function fetchIngredient(category, name) {
+  function merge(oldInventory, newInventory) {
+    console.log(newInventory);
+  }
+
+  async function fetchIngredient(category, name) {
     const url = `http://localhost:8080/${category}/${name}`;
-    return safeFetchJson(url);
+    return await safeFetchJson(url);
   }
   // returns a list of the options in the category
   function fetchCategoryList(category) {
@@ -52,8 +65,8 @@ function App(props) {
     return safeFetchJson(url);
   }
 
-  async function safeFetchJson(url) {
-    return await fetch(url).then((response) => {
+  function safeFetchJson(url) {
+    return fetch(url).then((response) => {
       if (!response.ok) {
         throw new Error(`${url} returned status ${response.status}`);
       }
