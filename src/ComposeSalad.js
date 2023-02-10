@@ -33,8 +33,6 @@ function ComposeSalad(props) {
   const [dressing, setDressing] = useState("");
   const [extra, setExtra] = useState({});
 
-  console.log(foundation);
-
   let { id } = useParams();
 
   const navigate = useNavigate();
@@ -95,11 +93,7 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
-        <Link
-          className="btn btn-primary btn-sm"
-          to="/view-ingredient/"
-          state={{ foundation }}
-        >
+        <Link className="btn btn-primary btn-sm" to="/view-ingredient/:name">
           View Info
         </Link>
         <div className="invalid-feedback">Vänligen välj ett alternativ</div>
@@ -120,11 +114,7 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
-        <Link
-          className="btn btn-primary btn-sm"
-          to="/view-ingredient/"
-          state={{ protein }}
-        >
+        <Link className="btn btn-primary btn-sm" to="/view-ingredient/:name">
           View Info
         </Link>
         <div className="invalid-feedback">Vänligen välj ett alternativ</div>
@@ -145,9 +135,8 @@ function ComposeSalad(props) {
                 <br></br>
                 <Link
                   className="btn btn-primary btn-sm"
-                  to="/view-ingredient/"
+                  to="/view-ingredient/:name"
                   key={name}
-                  state={{ extra: name }}
                 >
                   View Info
                 </Link>
@@ -172,11 +161,7 @@ function ComposeSalad(props) {
             </option>
           ))}
         </select>
-        <Link
-          className="btn btn-primary btn-sm"
-          to="/view-ingredient/"
-          state={{ dressing }}
-        >
+        <Link className="btn btn-primary btn-sm" to="/view-ingredient/:name">
           View Info
         </Link>
         <div className="invalid-feedback">Vänligen välj ett alternativ</div>

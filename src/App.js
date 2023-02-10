@@ -4,7 +4,7 @@ import inventory from "./inventory.ES6";
 import ComposeSalad from "./ComposeSalad";
 import ViewOrder from "./ViewOrder";
 import { useState } from "react";
-import { Route, Routes, Link, useParams } from "react-router-dom";
+import { Route, Routes, Link, useParams, NavLink } from "react-router-dom";
 import ViewIngredient from "./ViewIngredient";
 
 function App(props) {
@@ -28,38 +28,23 @@ function App(props) {
 
   function NavBar(props) {
     return (
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <Link className="navbar-brand h1" to="/">
-            Min egen salladsbar
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link" to="/compose-salad">
-                  Skapa salad
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/view-order">
-                  Din beställning
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <ul className="nav nav-tabs">
+        <li className="nav-item">
+          <NavLink className="nav-link " to="/">
+            Hem
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/compose-salad">
+            Skapa salad
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/view-order">
+            Din beställning
+          </NavLink>
+        </li>
+      </ul>
     );
   }
 
