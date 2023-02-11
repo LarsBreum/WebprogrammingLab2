@@ -25,9 +25,30 @@ function App(props) {
       });
     });
 
-    let proteinKeys = fetchCategoryList("proteins").then();
-    let extrasKeys = fetchCategoryList("extras").then((data) => data);
-    let dressingsKeys = fetchCategoryList("dressings").then((data) => data);
+    let proteinKeys = fetchCategoryList("proteins").then((keys) => {
+      const promises = keys.map((key) => fetchIngredient("proteins", key));
+
+      Promise.all(promises).then((data) => {
+        let ingredientObj = Object.assign(...Object.values(data));
+        setInventory((oldInventory) => merge(oldInventory, ingredientObj));
+      });
+    });
+    let extrasKeys = fetchCategoryList("extras").then((keys) => {
+      const promises = keys.map((key) => fetchIngredient("extras", key));
+
+      Promise.all(promises).then((data) => {
+        let ingredientObj = Object.assign(...Object.values(data));
+        setInventory((oldInventory) => merge(oldInventory, ingredientObj));
+      });
+    });
+    let dressingsKeys = fetchCategoryList("dressings").then((keys) => {
+      const promises = keys.map((key) => fetchIngredient("dressings", key));
+
+      Promise.all(promises).then((data) => {
+        let ingredientObj = Object.assign(...Object.values(data));
+        setInventory((oldInventory) => merge(oldInventory, ingredientObj));
+      });
+    });
   }, [ComposeSalad]);
 
   console.log("---Inventory after update---");
