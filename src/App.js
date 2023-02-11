@@ -12,52 +12,45 @@ function App(props) {
   //let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
   //const [currentSalad, setSalad] = useState(new Salad());
   const [order, setOrder] = useState([]);
-  //const [page, setPage] = useState(["hem"]);
-  //let order = new Order();
 
   useEffect(() => {
     let oldInventory = { ...inventory };
-    console.log(oldInventory);
-    let foundationsKeys = fetchCategoryList("foundations").then(
-      (foundationsKeys) => {
-        let promises = foundationsKeys.map((foundationKey) =>
-          fetchIngredient("foundations", foundationKey)
-        );
-        //vill ha ut ett array av values
-        const promiseArr = Promise.all(promises).then((data) => {
-          const newInventory = data.reduce((obj, value, index) => {
-            obj[foundationsKeys[index]] = value;
-            return obj;
-          }, {});
-          setInventory((oldInventory) => merge(oldInventory, newInventory));
-        });
-      }
-    );
-    let proteinKeys = fetchCategoryList("proteins").then((proteinKeys) => {
-      let promises = proteinKeys.map((proteinKey) =>
-        fetchIngredient("proteins", proteinKey)
-      );
-      const promiseArr = Promise.all(promises).then((data) => {
-        const newInventory = data.reduce((obj, value, index) => {
-          obj[proteinKeys[index]] = value;
-          return obj;
-        }, {});
-        setInventory((oldInventory) => merge(oldInventory, newInventory));
+
+    let foundationsKeys = fetchCategoryList("foundations").then((keys) => {
+      const promises = keys.map((key) => fetchIngredient("foundations", key));
+
+      Promise.all(promises).then((data) => {
+        let ingredientObj = Object.assign(...Object.values(data));
+        setInventory((oldInventory) => merge(oldInventory, ingredientObj));
       });
     });
+
+    let proteinKeys = fetchCategoryList("proteins").then();
     let extrasKeys = fetchCategoryList("extras").then((data) => data);
     let dressingsKeys = fetchCategoryList("dressings").then((data) => data);
-  });
+  }, [ComposeSalad]);
 
+  console.log("---Inventory after update---");
+  console.log(inventory);
   //function updateInventory(fetchedIngredients) {}
 
-  function merge(oldInventory, newInventory) {
-    console.log(newInventory);
+  //takes in the current inventory and an object of fetched ingredients. Returns the new state
+  function merge(oldInventory, fetchedIngredients) {
+    let stateCopy = { ...oldInventory };
+
+    Object.keys(fetchedIngredients).forEach((key) => {
+      stateCopy[key] = fetchedIngredients[`${key}`];
+    });
+    return stateCopy;
   }
 
   async function fetchIngredient(category, name) {
     const url = `http://localhost:8080/${category}/${name}`;
-    return await safeFetchJson(url);
+    let ingredient = {};
+    const values = await safeFetchJson(url).then((data) => {
+      ingredient = { [name]: { ...data } };
+    });
+    return ingredient;
   }
   // returns a list of the options in the category
   function fetchCategoryList(category) {

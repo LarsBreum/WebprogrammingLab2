@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import inventory from "./inventory.ES6.js";
+//import inventory from "./inventory.ES6.js";
 import { Salad } from "./Salad.js";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -8,6 +8,7 @@ function ComposeSalad(props) {
   let foundations = Object.keys(props.inventory).filter(
     (name) => props.inventory[name].foundation
   );
+  console.log(foundations);
   let proteins = Object.keys(props.inventory).filter(
     (name) => props.inventory[name].protein
   );
@@ -53,12 +54,12 @@ function ComposeSalad(props) {
           }
 
           let mySalad = new Salad()
-            .add(foundation, inventory[foundation])
-            .add(protein, inventory[protein])
-            .add(dressing, inventory[dressing]);
+            .add(foundation, props.inventory[foundation])
+            .add(protein, props.inventory[protein])
+            .add(dressing, props.inventory[dressing]);
 
           Object.keys(extra).forEach((extra) =>
-            mySalad.add(extra, inventory[extra])
+            mySalad.add(extra, props.inventory[extra])
           );
 
           props.setSalad(mySalad);
