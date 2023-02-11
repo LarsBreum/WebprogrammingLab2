@@ -21,5 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
 /lab4_server
+public/lab4_server
+public/__MACOSX
