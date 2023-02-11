@@ -16,6 +16,7 @@ function App(props) {
   useEffect(() => {
     let oldInventory = { ...inventory };
 
+    //Updates inventory with foundations
     let foundationsKeys = fetchCategoryList("foundations").then((keys) => {
       const promises = keys.map((key) => fetchIngredient("foundations", key));
 
@@ -25,6 +26,7 @@ function App(props) {
       });
     });
 
+    //updates inventory with proteins
     let proteinKeys = fetchCategoryList("proteins").then((keys) => {
       const promises = keys.map((key) => fetchIngredient("proteins", key));
 
@@ -33,6 +35,8 @@ function App(props) {
         setInventory((oldInventory) => merge(oldInventory, ingredientObj));
       });
     });
+
+    //updates inventory with extras
     let extrasKeys = fetchCategoryList("extras").then((keys) => {
       const promises = keys.map((key) => fetchIngredient("extras", key));
 
@@ -41,9 +45,12 @@ function App(props) {
         setInventory((oldInventory) => merge(oldInventory, ingredientObj));
       });
     });
-    let dressingsKeys = fetchCategoryList("dressings").then((keys) => {
-      const promises = keys.map((key) => fetchIngredient("dressings", key));
 
+    //updates inventory with dressings
+    let dressingsKeys = fetchCategoryList("dressings").then((keys) => {
+      //gets keys
+      const promises = keys.map((key) => fetchIngredient("dressings", key)); //fetches each ingredient
+      //when all promises are fulfulled, gather each ingredient into an object and send it to merge()
       Promise.all(promises).then((data) => {
         let ingredientObj = Object.assign(...Object.values(data));
         setInventory((oldInventory) => merge(oldInventory, ingredientObj));
