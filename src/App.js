@@ -56,7 +56,7 @@ function App(props) {
         setInventory((oldInventory) => merge(oldInventory, ingredientObj));
       });
     });
-  }, [ComposeSalad]);
+  }, [ComposeSalad]); //only update when the ComposeSalad component renders
 
   console.log("---Inventory after update---");
   console.log(inventory);
