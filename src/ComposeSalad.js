@@ -8,7 +8,6 @@ function ComposeSalad(props) {
   let foundations = Object.keys(props.inventory).filter(
     (name) => props.inventory[name].foundation
   );
-  console.log(foundations);
   let proteins = Object.keys(props.inventory).filter(
     (name) => props.inventory[name].protein
   );

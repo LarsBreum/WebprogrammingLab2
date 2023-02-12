@@ -58,9 +58,8 @@ function App(props) {
     });
   }, [ComposeSalad]); //only update when the ComposeSalad component renders
 
-  console.log("---Inventory after update---");
-  console.log(inventory);
-  //function updateInventory(fetchedIngredients) {}
+  // console.log("---Inventory after update---");
+  // console.log(inventory);
 
   //takes in the current inventory and an object of fetched ingredients. Returns the new state
   function merge(oldInventory, fetchedIngredients) {
