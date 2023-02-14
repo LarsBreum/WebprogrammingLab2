@@ -13,6 +13,9 @@ function App(props) {
   //const [currentSalad, setSalad] = useState(new Salad());
   const [order, setOrder] = useState([]);
 
+  const [confirmedOrders, setCornfirmedOrders] = useState({ ...localStorage });
+  console.log(confirmedOrders);
+
   useEffect(() => {
     let oldInventory = { ...inventory };
 

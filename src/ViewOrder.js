@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import OrderConfirmation from "./OrderConfirmation.js";
 
 function ViewOrder(props) {
+  const [order, setOrder] = useState(props.order); //varukorg
+
   //const [confirmedOrders, setCornfirmedOrders] = useState([]);
   const [latestOrder, setLatestOrder] = useState([]);
   //takes the url to the server, and an array of ingredient arrays
@@ -25,11 +27,11 @@ function ViewOrder(props) {
     <div>
       <div className="">
         Total price:{" "}
-        {props.order.reduce((acc, curr) => {
+        {order.reduce((acc, curr) => {
           return acc + curr.getPrice();
         }, 0)}
       </div>
-      {props.order.map((salad) => {
+      {order.map((salad) => {
         return (
           <div className="bg-white border rounded-3" key={salad.uuid}>
             {Object.keys(salad.ingredients).join(" ")}, pris: {salad.getPrice()}
@@ -53,12 +55,13 @@ function ViewOrder(props) {
                 JSON.stringify(o.uuid),
                 JSON.stringify(o.order)
               );
-              //empty the order when user succesfully orders
-              // props.order = [];
+
               return o;
             })
             .then((order) => {
               setLatestOrder(order);
+              //empty the order when user succesfully orders
+              setOrder([]);
             })
             .catch((error) => console.log("Error occured :(" + error));
         }}
