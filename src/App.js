@@ -180,9 +180,11 @@ function App(props) {
   }
 
   function Footer(props) {
-    <footer className="pt-3 mt-4 text-muted border-top">
-      EDAF90 - webprogrammering, la8177br-s, el1461ta-s
-    </footer>;
+    return (
+      <footer className="pt-3 mt-4 text-muted border-top">
+        EDAF90 - webprogrammering, la8177br-s, el1461ta-s
+      </footer>
+    );
   }
 
   return (
