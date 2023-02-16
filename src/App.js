@@ -6,15 +6,29 @@ import ViewOrder from "./ViewOrder";
 import { useState, useEffect } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import ViewIngredient from "./ViewIngredient";
+import { Salad } from "./Salad.js";
 
 function App(props) {
   const [inventory, setInventory] = useState({});
   //let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
   //const [currentSalad, setSalad] = useState(new Salad());
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState(() => {
+    if (localStorage.getItem("cart")) {
+      return JSON.parse(localStorage.getItem("cart")).map((o) => {
+        console.log(o);
+        return new Salad(o);
+      });
+    } else {
+      return [];
+    }
+  });
 
   const [confirmedOrders, setCornfirmedOrders] = useState({ ...localStorage });
   console.log(confirmedOrders);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(order));
+  }, [order]);
 
   useEffect(() => {
     let oldInventory = { ...inventory };
@@ -143,7 +157,11 @@ function App(props) {
               <div className="container col-12">
                 <div className="row h-200 p-5 bg-light border rounded-3">
                   <h2>Din beställning</h2>
-                  <ViewOrder order={order} setOrder={setOrder} />
+                  <ViewOrder
+                    order={order}
+                    setOrder={setOrder}
+                    confirmedOrders={confirmedOrders}
+                  />
                 </div>
               </div>
             }

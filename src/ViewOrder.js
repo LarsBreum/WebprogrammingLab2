@@ -3,6 +3,7 @@ import OrderConfirmation from "./OrderConfirmation.js";
 
 function ViewOrder(props) {
   const [order, setOrder] = useState(props.order); //varukorg
+  //console.log(props);
 
   //const [confirmedOrders, setCornfirmedOrders] = useState([]);
   const [latestOrder, setLatestOrder] = useState([]);
@@ -50,12 +51,6 @@ function ViewOrder(props) {
           //Send a post request with the props.order
           orderStatus = postOrder(URL, orderArr)
             .then((o) => {
-              //store the order in local storage
-              localStorage.setItem(
-                JSON.stringify(o.uuid),
-                JSON.stringify(o.order)
-              );
-
               return o;
             })
             .then((order) => {
@@ -70,7 +65,10 @@ function ViewOrder(props) {
       </button>
 
       <div>
-        <OrderConfirmation latestOrder={latestOrder}></OrderConfirmation>
+        <OrderConfirmation
+          latestOrder={latestOrder}
+          confirmedOrder={props.confirmedOrders}
+        ></OrderConfirmation>
       </div>
     </div>
   );
