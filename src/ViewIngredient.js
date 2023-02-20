@@ -1,16 +1,19 @@
 import { useLocation, useParams } from "react-router-dom";
 
 function ViewIngredient(props) {
-  let ingredients = { ...props.inventory };
-  let { id } = useParams();
-  console.log(id);
+  let params = useParams();
+  let ingredient = props.inventory[params.name];
+
   // const name = Object.keys(ingredients).filter((key) => state.extra === key);
 
   return (
     <>
-      <h1>id: {id}</h1>
-      <h1 className="h1">{Object.values(id)}</h1>
-      <ul></ul>
+      <h1>{params.name}</h1>
+      <ul>
+        {Object.keys(ingredient).map((prop) => (
+          <li key={prop}>{prop + " : " + ingredient[prop]}</li>
+        ))}
+      </ul>
     </>
   );
 }

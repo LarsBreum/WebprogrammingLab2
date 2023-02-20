@@ -11,6 +11,7 @@ function App(props) {
   let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
   //const [currentSalad, setSalad] = useState(new Salad());
   const [order, setOrder] = useState([]);
+  const { ing } = useParams();
   //const [page, setPage] = useState(["hem"]);
   //let order = new Order();
 
@@ -84,7 +85,7 @@ function App(props) {
             }
           />
           <Route
-            path="/view-ingredient/"
+            path="view-ingredient/:name"
             element={<ViewIngredient inventory={inventory}></ViewIngredient>}
           ></Route>
           <Route
